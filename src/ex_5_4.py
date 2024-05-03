@@ -1,5 +1,5 @@
 """ex_5_4.py"""
-import numpy as np
+import numpy as np # type: ignore
 from pathlib import Path
 
 try:
@@ -7,7 +7,7 @@ try:
 except ImportError:
     from util import get_repository_root
 
-# Use these predefined paths.  Note: automated tests expect these paths
+# Use these predefined paths. Note: automated tests expect these paths
 # Changing these paths will cause tests to fail.
 
 root_dir = get_repository_root()
@@ -17,5 +17,8 @@ input_file = data_dir / "ex_5_4-data.csv"
 output_file = output_dir / "ex_5_4-processed.csv"
 
 # Process the input data using numpy
+data = np.loadtxt(input_file)
+data[data < 0] = 0
 
 # Save the result to output_file
+np.savetxt(output_file, data, delimiter=",")
